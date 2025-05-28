@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blood Group Image Carousel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #buttons button {
+      margin: 5px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #buttons button:hover {
+      background-color: #45a049;
+    }
+
+    #carousel {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #carousel img {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Blood Group Image Viewer</h1>
+  <p>Select a blood group to view its images</p>
+
+  <div id="buttons">
+    <button onclick="loadImages('A+')">A+</button>
+    <button onclick="loadImages('A-')">A-</button>
+    <button onclick="loadImages('B+')">B+</button>
+    <button onclick="loadImages('B-')">B-</button>
+    <button onclick="loadImages('AB+')">AB+</button>
+    <button onclick="loadImages('AB-')">AB-</button>
+    <button onclick="loadImages('O+')">O+</button>
+    <button onclick="loadImages('O-')">O-</button>
+  </div>
+
+  <div id="carousel">
+    <img id="img1" src="" alt="Image 1">
+    <img id="img2" src="" alt="Image 2">
+    <img id="img3" src="" alt="Image 3">
+  </div>
+
+  <script>
+    let images = [];
+    let currentIndex = 0;
+    let timer = null;
+
+    function loadImages(group) {
+      clearInterval(timer);
+
+      fetch(`/images/${encodeURIComponent(group)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length < 3) {
+            alert("Not enough images in this group.");
+            return;
+          }
+          images = data;
+          currentIndex = 0;
+          showImages();
+          timer = setInterval(showImages, 3000);
+        })
+        .catch(err => {
+          console.error("Error loading images:", err);
+          alert("Failed to load images.");
+        });
+    }
+
+    function showImages() {
+      if (images.length < 3) return;
+
+      document.getElementById('img1').src = images[currentIndex % images.length];
+      document.getElementById('img2').src = images[(currentIndex + 1) % images.length];
+      document.getElementById('img3').src = images[(currentIndex + 2) % images.length];
+
+      currentIndex = (currentIndex + 3) % images.length;
+    }
+  </script>
+
+</body>
+</html>

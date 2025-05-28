@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutstyle.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #buttons button {
+      margin: 5px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #buttons button:hover {
+      background-color: #45a049;
+    }
+
+    #carousel {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #carousel img {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+
+</head>
+
+<body style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+  <!-- Fixed Navbar -->
+  <nav class="navbar fixed-navbar">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/1086/1086933.png" alt="logo" />
+      <span>Bloodgroup Detector</span>
+    </div>
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <button class="get-started-btn" onclick="window.location.href='{{ url_for('predict') }}'">Get Started</button>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <h2>Want to know more about this Modern Technology feature...?</h2>
+    <div class="about-options">
+      <button class="about-btn" onclick="scrollToSection('overview')">Overview</button>
+      <button class="about-btn" onclick="scrollToSection('methodology')">Methodology</button>
+      <button class="about-btn" onclick="scrollToSection('dataset')">Dataset</button>
+      <button class="about-btn" onclick="scrollToSection('results')">Results</button>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section id="overview" class="info-section overview-section" style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+    <h3>Overview</h3>
+    <p>
+      Blood group detection is crucial in medical diagnostics, but traditional methods are invasive and require lab infrastructure.
+      This study presents an innovative, non-invasive approach using fingerprint image processing to detect blood groups. By analyzing
+      unique ridge patterns in fingerprints and correlating them with blood group types, a Convolutional Neural Network (CNN) is
+      employed for accurate and rapid classification.
+    </p>
+    <p>
+      The system, trained on a dataset of labeled fingerprint images, demonstrates promising results in terms of accuracy. This method
+      offers a portable, cost-effective solution for blood group detection, especially in resource-limited settings, with potential
+      applications in medical diagnostics and transfusion services.
+    </p>
+    <div class="floating-buttons">
+      <a href="#overview" class="btn">Overview</a>
+      <a href="#methodology" class="btn">Methodology</a>
+      <a href="#dataset" class="btn">Dataset</a>
+      <a href="#results" class="btn">Results</a>
+  </div>
+
+    <div class="overview-images">
+      <div class="img-container">
+        <img src="{{ url_for('static', filename='images/pic2.avif') }}" alt="Fingerprint Sample 1" />
+      </div>
+      <div class="img-container">
+        <img src="{{ url_for('static', filename='images/pic3.avif') }}" alt="Fingerprint Sample 2" />
+      </div>
+      <div class="img-container">
+        <img src="{{ url_for('static', filename='images/pic3.jpg') }}" alt="Fingerprint Sample 3" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology Section -->
+  <section id="methodology" class="info-section overview-section" style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+    <h3>Methodology</h3>
+    <div class="methodology-cards">
+      <div class="methodology-card">
+        <p><strong>Dataset Collection:</strong> Collected fingerprint images labeled with blood groups.</p>
+      </div>
+      <div class="methodology-card">
+        <p><strong>Preprocessing:</strong> Resized images to 64x64 pixels.</p>
+      </div>
+      <div class="methodology-card">
+        <p><strong>Dataset Balancing:</strong> Used oversampling to balance the dataset.</p>
+      </div>
+      <div class="methodology-card">
+        <p><strong>Model Training:</strong> Trained a CNN model on the balanced dataset.</p>
+      </div>
+      <div class="methodology-card">
+        <p><strong>Evaluation & Testing:</strong> Evaluated the model’s accuracy on the test set.</p>
+      </div>
+      <div class="methodology-card">
+        <p><strong>Model Saving:</strong> Saved the trained model for future use.</p>
+      </div>
+    </div>
+    <div class="floating-buttons">
+      <a href="#overview" class="btn">Overview</a>
+      <a href="#methodology" class="btn">Methodology</a>
+      <a href="#dataset" class="btn">Dataset</a>
+      <a href="#results" class="btn">Results</a>
+  </div>
+  </section>
+
+  <section id="dataset" class="info-section overview-section" style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+    <h3>Dataset Overview</h3>
+  
+    <!-- Sample Counts -->
+    <div class="sample-counts">
+      <div class="count-card"><strong>A-:</strong> 1009</div>
+      <div class="count-card"><strong>O-:</strong> 712</div>
+      <div class="count-card"><strong>AB-:</strong> 761</div>
+      <div class="count-card"><strong>AB+:</strong> 708</div>
+      <div class="count-card"><strong>B+:</strong> 652</div>
+      <div class="count-card"><strong>B-:</strong> 741</div>
+      <div class="count-card"><strong>O+:</strong> 852</div>
+      <div class="count-card"><strong>A+:</strong> 565</div>
+    </div>
+  
+    <h1>Blood Group Image Viewer</h1>
+  <p>Select a blood group to view its images</p>
+
+  <div id="buttons">
+    <button onclick="loadImages('A+')">A+</button>
+    <button onclick="loadImages('A-')">A-</button>
+    <button onclick="loadImages('B+')">B+</button>
+    <button onclick="loadImages('B-')">B-</button>
+    <button onclick="loadImages('AB+')">AB+</button>
+    <button onclick="loadImages('AB-')">AB-</button>
+    <button onclick="loadImages('O+')">O+</button>
+    <button onclick="loadImages('O-')">O-</button>
+  </div>
+
+  <div id="carousel">
+    <img id="img1" src="" alt="Image 1">
+    <img id="img2" src="" alt="Image 2">
+    <img id="img3" src="" alt="Image 3">
+  </div>
+  <script>
+    
+    
+  </script>
+  
+    <!-- Floating Navigation Buttons -->
+    <div class="floating-buttons">
+      <a href="#overview" class="btn">Overview</a>
+      <a href="#methodology" class="btn">Methodology</a>
+      <a href="#dataset" class="btn">Dataset</a>
+      <a href="#results" class="btn">Results</a>
+    </div>
+  </section>
+  
+
+
+  <section id="results" class="info-section overview-section" style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+    <h2>Results</h2>
+  
+    <div class="floating-buttons">
+      <a href="#overview" class="btn">Overview</a>
+      <a href="#methodology" class="btn">Methodology</a>
+      <a href="#dataset" class="btn">Dataset</a>
+      <a href="#results" class="btn">Results</a>
+    </div>
+  
+    <!-- Results Row -->
+    <div class="results-row" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-start;">
+  
+      <!-- Accuracy Graph Card -->
+      <div class="card" style="flex: 1; min-width: 250px; max-width: 350px; padding: 20px; background-color: #f8f8f8; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+        <h3>Accuracy Graph</h3>
+        <img src="{{ url_for('static', filename='images/graph.jpg') }}" alt="Accuracy Graph" style="max-width: 100%; height: auto;">
+      </div>
+  
+      <!-- Classification Report Card (Center and Bigger) -->
+      <div class="card" style="flex: 1.5; min-width: 320px; max-width: 500px; padding: 25px; background-color: #f8f8f8; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow-x: auto;">
+        <h3 style="text-align: center;">Classification Report</h3>
+        <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 14px;">
+  precision    recall  f1-score   support
+  
+  A+       0.88      0.97      0.92        89
+  A-       0.85      0.69      0.76        95
+  AB+      0.89      0.87      0.88        90
+  AB-      0.87      0.79      0.83        85
+  B+       0.78      1.00      0.87       107
+  B-       0.91      0.85      0.88       118
+  O+       0.87      0.88      0.88       116
+  O-       0.93      0.87      0.90       100
+  
+  accuracy                           0.87       800
+  macro avg      0.87      0.86      0.86       800
+  weighted avg   0.87      0.87      0.86       800
+        </pre>
+      </div>
+  
+      <!-- Confusion Matrix Card -->
+      <div class="card" style="flex: 1; min-width: 250px; max-width: 350px; padding: 20px; background-color: #f8f8f8; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+        <h3>Confusion Matrix</h3>
+        <img src="{{ url_for('static', filename='images/conf_mat.jpg') }}" alt="Confusion Matrix" style="max-width: 100%; height: auto;">
+      </div>
+  
+    </div>
+  </section>
+  
+
+  <script>
+    let images = [];
+    let currentIndex = 0;
+    let timer = null;
+
+    window.onload = function() {
+  loadImages('A+');  // Automatically load images for the A+ group when the page is loaded
+};
+
+    function loadImages(group) {
+      clearInterval(timer);
+
+      fetch(`/images/${encodeURIComponent(group)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length < 3) {
+            alert("Not enough images in this group.");
+            return;
+          }
+          images = data;
+          currentIndex = 0;
+          showImages();
+          timer = setInterval(showImages, 3000);
+        })
+        .catch(err => {
+          console.error("Error loading images:", err);
+          alert("Failed to load images.");
+        });
+    }
+
+
+    function showGroup(group) {
+      fetch(`/images/${group}`)
+        .then(response => response.json())
+        .then(images => {
+          const slider = document.getElementById('image-slider');
+          const container = document.getElementById('slider-container');
+          slider.innerHTML = '';
+  
+          if (images.length > 0) {
+            images.forEach(url => {
+              const img = document.createElement('img');
+              img.src = url;
+              img.style.height = '120px';
+              img.style.borderRadius = '8px';
+              img.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+              slider.appendChild(img);
+            });
+            container.style.display = 'block';
+          } else {
+            slider.innerHTML = '<p>No images found for this group.</p>';
+            container.style.display = 'block';
+          }
+        });
+    }
+
+    
+
+    function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function showImages() {
+      if (images.length < 3) return;
+
+      document.getElementById('img1').src = images[currentIndex % images.length];
+      document.getElementById('img2').src = images[(currentIndex + 1) % images.length];
+      document.getElementById('img3').src = images[(currentIndex + 2) % images.length];
+
+      currentIndex = (currentIndex + 3) % images.length;
+    }
+  </script>
+</body>
+
+</html>

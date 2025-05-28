@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloodgroup Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-image: url('../static/images/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/1086/1086933.png" alt="logo">
+      <span>Bloodgroup Detector</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <!-- <a href="#">Login</a>
+      <a href="#">Sign Up</a> -->
+      <a href="{{ url_for('predict') }}" class="get-started-btn">Get Started</a>
+
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Bloodgroup Detector</h1>
+    <p>New way of Detecting Blood Group with Fingerprint</p>
+    <div class="hero-buttons">
+      <a href="{{ url_for('predict') }}" class="get-started-btn">Get Started</a>
+      
+    </div>
+    <img src="{{ url_for('static', filename='images/pic1.webp') }}" alt="Fingerprint" class="hero-image">
+  </section>
+
+</body>
+</html>
